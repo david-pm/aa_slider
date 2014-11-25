@@ -21,13 +21,7 @@ Slider.prototype.setCurrent = function( dir ) {
 	return this.current;
 }
 
-
 Slider.prototype.thbCurrent = function( altID ) {
-	//console.log( altID );
-	//console.log( this.current );
-	// take altID and reset current accordingly
 	this.current = altID;
-	//console.log( this.current );
-
 }
 
