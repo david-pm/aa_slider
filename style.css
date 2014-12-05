@@ -68,7 +68,6 @@ body {
 	width: 600px;
 	margin: auto;
 	overflow: hidden;
-	border: 2px solid #ddd;
 	position: relative; /* for nav buttons */
 }
 
@@ -93,10 +92,15 @@ body {
 
 .thumbnails li.chosen {
 	border: 2px solid black;
+	position: relative;
 }
-/*.thumbnails li.chosen:before {
-	content: "69";
-}*/
+li.chosen em.arrow {
+	position: absolute;
+	top: -10px; left: 42.5%;
+	border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #000;
+}
 
 .thumbnails img {
 	width: 150px;

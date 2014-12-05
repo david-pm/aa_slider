@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //rotation speed and timer
-    var speed = 5000;
+    var speed = 6000;
     var run = setInterval('rotate()', speed);    
     
     //grab the width and calculate left value
@@ -67,5 +67,5 @@ $(document).ready(function() {
 //a simple function to click next link
 //a timer will call this function, and the rotation will begin :)  
 function rotate() {
-    smallNav.findfind('button[data-dir="next"]').click();
+    $('.small-nav').find('button[data-dir="next"]').click();
 }

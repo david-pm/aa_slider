@@ -67,8 +67,11 @@
 
 		tbImgs.on('click', function() {
 			var altID = $(this).data('number');
+				
+				$('.arrow').remove();
 				$('li.chosen').removeClass('chosen');
-				$(this).parent('li').addClass('chosen');
+				$(this).parent('li').addClass('chosen').prepend('<em class="arrow"></em>');
+
 				slider.thbCurrent( altID );
 				slider.tranny();
 		})
