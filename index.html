@@ -51,23 +51,18 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="slider.js"></script>
+<script type="text/javascript" src="carousel.js"></script>
 <script type="text/javascript">
 	(function() {
 		var container = $('.container'),
 			thumbnails = $('.thumbnails'),
 			tbContainer = $('.thumbnails').find('ul'),
 			tbImgs = thumbnails.find('img'),
-			slider = new Slider( container, $('.large-nav') ),
-			smallSlider = new Slider ( tbContainer, $('.small-nav') );
+			slider = new Slider( container, $('.large-nav') );
 
 		slider.nav.find('button').on('click', function() {
 			slider.setCurrent( $(this).data('dir') );
 			slider.tranny();
-		})
-
-		smallSlider.nav.find('button').on('click', function() {
-			smallSlider.setCurrent( $(this).data('dir') );
-			smallSlider.tranny();
 		})
 
 		tbImgs.on('click', function() {
