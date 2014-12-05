@@ -7,15 +7,13 @@ function Slider( container, nav ) {
 	this.current = 0;
 }
 
-Slider.prototype.tranny = function( coords ) {
-
+Slider.prototype.tranny = function( ) {
 	this.container.animate({
-		'margin-left' : coords || -( this.current * this.imgWidth )
+		'margin-left' : -( this.current * this.imgWidth )
 	});
 };
 
 Slider.prototype.setCurrent = function( dir ) {
-
 	this.current += ( ~~( dir === 'next' ) || -1 );
 	this.current = ( this.current < 0 ) ? this.imgsLen -1 : this.current % this.imgsLen;
 	return this.current;
