@@ -18,10 +18,10 @@
 		<li><img src="img/seven.jpg" alt="seven"></li>
 		<li><img src="img/eight.jpg" alt="eight"></li>
 	</ul>
-	<nav class="large-nav">
+	<!-- <nav class="large-nav">
 		<button data-dir="prev"> &#9756; </button>
 		<button data-dir="next"> &#9758; </button>
-	</nav>
+	</nav> -->
 </div>
 
 <div class="thumbnails">
@@ -51,7 +51,6 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="slider.js"></script>
-<script type="text/javascript" src="carousel.js"></script>
 <script type="text/javascript">
 	(function() {
 		var container = $('.container'),
@@ -60,10 +59,6 @@
 			tbImgs = thumbnails.find('img'),
 			slider = new Slider( container, $('.large-nav') );
 
-		slider.nav.find('button').on('click', function() {
-			slider.setCurrent( $(this).data('dir') );
-			slider.tranny();
-		})
 
 		tbImgs.on('click', function() {
 			var altID = $(this).data('number');
