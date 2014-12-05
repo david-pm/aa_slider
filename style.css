@@ -1,6 +1,5 @@
 body {
 	font: 400 62.5%/1 Helvetica, sans-serif;
-	width: 600px;
 	margin: 1em auto 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -9,8 +8,9 @@ body {
 /* slider */
 .slider {
 	border: 2px solid #ddd;
+	width: 600px;
 	height: 400px;
-	width: inherit;
+	margin: auto;
 	overflow: hidden;
 	position: relative; /* for nav buttons */
 }
@@ -64,8 +64,9 @@ body {
 
 /* thumbnails */
 .thumbnails {
-	height: 100px;
-	width: inherit;
+	height: 50px;
+	width: 600px;
+	margin: auto;
 	overflow: hidden;
 	border: 2px solid #ddd;
 	position: relative; /* for nav buttons */
@@ -85,7 +86,7 @@ body {
 }
 
 .thumbnails img {
-	width: 150px;
+	width: 75px;
 	height: auto;
 }
 
