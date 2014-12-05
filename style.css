@@ -1,18 +1,18 @@
 body {
-	font: 400 62.5%/1 Helvetica, sans-serif;
-	margin: 1em auto 0;
+	font: 400 62.5%/1 Helvetica, Arial, sans-serif;
+	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	background: #eee;
 }
 
 /* featured slider */
 .main-slider {
-	border: 2px solid #ddd;
-	width: 600px;
-	height: 400px;
 	margin: auto;
+	/*border: 2px solid #ddd;*/
+	width: 537px;
+	height: 275px;
 	overflow: hidden;
-	position: relative; /* for nav buttons */
 }
 .slider-container {
 	margin: 0; padding: 0;
@@ -23,6 +23,12 @@ body {
 }
 .slider-container li {
 	float: left;
+	width: 537px;
+	height: 275px
+}
+.slider-container li img {
+	max-width: 100%;
+	height: auto;
 }
 
 /* nav buttons */
@@ -31,36 +37,30 @@ body {
 }
 
 .small-nav button {
-	font-family: Times, Serif;
-	border-radius: 50%;
+	font: 800 .9rem/1 Helvetica, Arial, sans-serif;
 	border: 0;
 	font-weight: bold;
-	background: rgba(221, 221, 221, 0.37);
+	background: rgba(255, 255, 255, 0.9);
 	color: #343434;
 	cursor: pointer;
 	outline: 0;
 	position: absolute;
 	text-align: center;
 	transition: color .4s;
+	top: 40%;
 }
-
-.small-nav button { font-size: .9rem; top: 25%;}
-
-.small-nav button[data-dir="prev"] {
-	left: .1%;
-}
-.small-nav button[data-dir="next"] {
-	right: .1%;
-}
+.small-nav button[data-dir="prev"] { left: 0; }
+.small-nav button[data-dir="next"] { right: 0; }
 .small-nav button:hover {
-	background: rgba(221, 221, 221, 0.7);
+	background: rgba(255, 255, 255, 1);
 	color: #333;
 }
 
 /* slider thumbnails */
 .slider-thumbnails {
-	height: 125px;
-	width: 600px;
+	/*border: 2px solid #fff;*/
+	height: 105px;
+	width: 537px;
 	margin: auto;
 	overflow: hidden;
 	position: relative; /* for nav buttons */
@@ -79,7 +79,7 @@ body {
 .slider-thumbnails li {
 	cursor: pointer;
 	width: 150px;
-	height: 100px;
+	height: 77px;
 	float: left;
 	margin: 10px 5px;
 	border: 2px solid #fff;
