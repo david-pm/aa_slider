@@ -23,32 +23,35 @@ Slider.prototype.thbCurrent = function( altID ) {
 	this.current = altID;
 }
 
+
+
+// carousel
 $(document).ready(function() {
     //rotation speed and timer
     var speed = 6000;
     var run = setInterval('rotate()', speed);    
     
     //grab the width and calculate left value
-    var item_width = $('.thumbnails li').outerWidth(); 
+    var item_width = $('.slider-thumbnails li').outerWidth(); 
     var left_value = item_width * (-1); 
 
     var smallNav = $('.small-nav').show();
         
     //move the last item before first item, just in case user click prev button
-    $('.thumbnails li:first').before($('.thumbnails li:last'));
+    $('.slider-thumbnails li:first').before($('.slider-thumbnails li:last'));
     
     //set the default item to the correct position 
-    $('.thumbnails ul').css({'left' : left_value});
+    $('.slider-thumbnails ul').css({'left' : left_value});
     //if user clicked on prev button
     smallNav.find('button[data-dir="prev"]').click(function() {
         //get the right position            
-        var left_indent = parseInt($('.thumbnails ul').css('left')) + item_width;
+        var left_indent = parseInt($('.slider-thumbnails ul').css('left')) + item_width;
         //slide the item            
-        $('.thumbnails ul').animate({'left' : left_indent}, 500,function(){    
+        $('.slider-thumbnails ul').animate({'left' : left_indent}, 500,function(){    
             //move the last item and put it as first item                
-            $('.thumbnails li:first').before($('.thumbnails li:last'));           
+            $('.slider-thumbnails li:first').before($('.slider-thumbnails li:last'));           
             //set the default item to correct position
-            $('.thumbnails ul').css({'left' : left_value});
+            $('.slider-thumbnails ul').css({'left' : left_value});
         
         });
         //cancel the link behavior            
@@ -59,16 +62,16 @@ $(document).ready(function() {
     smallNav.find('button[data-dir="next"]').click(function() {
         
         //get the right position
-        var left_indent = parseInt($('.thumbnails ul').css('left')) - item_width;
+        var left_indent = parseInt($('.slider-thumbnails ul').css('left')) - item_width;
         
         //slide the item
-        $('.thumbnails ul').animate({'left' : left_indent}, 500, function () {
+        $('.slider-thumbnails ul').animate({'left' : left_indent}, 500, function () {
             
             //move the first item and put it as last item
-            $('.thumbnails li:last').after($('.thumbnails li:first'));                     
+            $('.slider-thumbnails li:last').after($('.slider-thumbnails li:first'));                     
             
             //set the default item to correct position
-            $('.thumbnails ul').css({'left' : left_value});
+            $('.slider-thumbnails ul').css({'left' : left_value});
         
         });
                  
@@ -78,7 +81,7 @@ $(document).ready(function() {
     });        
     
     //if mouse hover, pause the auto rotation, otherwise rotate it
-    $('.thumbnails').hover(
+    $('.slider-thumbnails').hover(
         
         function() {
             clearInterval(run);

@@ -7,8 +7,8 @@
 </head>
 <body>
 
-<div class="slider">
-	<ul class="container">
+<div class="main-slider">
+	<ul class="slider-container">
 		<li><img src="img/one.jpg" alt="one"></li>
 		<li><img src="img/two.jpg" alt="two"></li>
 		<li><img src="img/three.jpg" alt="three"></li>
@@ -24,7 +24,7 @@
 	</nav> -->
 </div>
 
-<div class="thumbnails">
+<div class="slider-thumbnails">
 	<ul>
 		<li><img src="img/one.jpg" alt="one" data-number="0"></li>
 		<li><img src="img/two.jpg" alt="two" data-number="1"></li>
@@ -53,11 +53,11 @@
 <script type="text/javascript" src="slider.js"></script>
 <script type="text/javascript">
 	(function() {
-		var container = $('.container'),
-			thumbnails = $('.thumbnails'),
-			tbContainer = $('.thumbnails').find('ul'),
+		var container = $('.slider-container'),
+			thumbnails = $('.slider-thumbnails'),
+			tbContainer = $('.slider-thumbnails').find('ul'),
 			tbImgs = thumbnails.find('img'),
-			slider = new Slider( container, $('.large-nav') );
+			slider = new Slider( container );
 
 
 		tbImgs.on('click', function() {
