@@ -26,6 +26,10 @@ body {
 	width: 537px;
 	height: 275px
 }
+.slider-container li a {
+	display: block;
+	overflow: hidden;
+}
 .slider-container li img {
 	max-width: 100%;
 	height: auto;
