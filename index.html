@@ -12,7 +12,6 @@
 			<a href="#">
 				<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/powerwashed-beatrice_v2.gif" alt="one">
 			</a>
-			
 		</li>
 		<li>
 			<a href="#">
@@ -26,7 +25,7 @@
 		</li>
 		<li>
 			<a href="#">
-				<img src="http://s7d9.scene7.com/is/image/AmericanApparel/20140527_bb401contrast_2?qlt=90,1" alt="four">
+				<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/06032014_WHS_rsabb354_537x275.gif" alt="four">
 			</a>
 		</li>
 		<li>
@@ -53,83 +52,43 @@
 </div>
 
 <div class="slider-thumbnails">
-	<ul>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/powerwashed-beatrice_v2.gif" alt="one" data-number="0">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/Organic_16styles_537x275.gif?qlt=90,1" alt="two" data-number="1">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/f397_weight_gif_537x275_final" alt="three" data-number="2">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/image/AmericanApparel/20140527_bb401contrast_2?qlt=90,1" alt="four" data-number="3">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/mesh-combo-537x275_v3.gif" alt="five" data-number="4">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/140926_CR_Cities_537x275.gif" alt="six" data-number="5">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/140911_5336new_537x275.gif" alt="seven" data-number="6">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/image/AmericanApparel/06032014_WHS_newstyleguide_537x275" alt="eight" data-number="7">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/powerwashed-beatrice_v2.gif" alt="one" data-number="0">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/Organic_16styles_537x275.gif?qlt=90,1" alt="two" data-number="1">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/f397_weight_gif_537x275_final" alt="three" data-number="2">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/image/AmericanApparel/20140527_bb401contrast_2?qlt=90,1" alt="four" data-number="3">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/mesh-combo-537x275_v3.gif" alt="five" data-number="4">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/140926_CR_Cities_537x275.gif" alt="six" data-number="5">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/content/AmericanApparel/1.%20Assets/Images/Slides/Wholesale/140911_5336new_537x275.gif" alt="seven" data-number="6">
-		</li>
-		<li>
-			<img src="http://s7d9.scene7.com/is/image/AmericanApparel/06032014_WHS_newstyleguide_537x275" alt="eight" data-number="7">
-		</li>
+	<ul> <!-- thumbnails dynamically created -->
+		
 	</ul>
 	<nav class="small-nav">
 		<button data-dir="prev"> &lt; </button>
 		<button data-dir="next"> &gt; </button>
 	</nav>
 </div>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="slider.js"></script>
-<script type="text/javascript">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
+ <script src="js/tbSlider.js"></script>
+<script> 
+	/* initialize thumbnails and slider*/
 	(function() {
 		var container = $('.slider-container'),
-			thumbnails = $('.slider-thumbnails'),
-			tbContainer = $('.slider-thumbnails').find('ul'),
-			tbImgs = thumbnails.find('img'),
+			bigImgs = container.find('li img'),
+			thumbnails, tbImgs,
 			slider = new Slider( container );
 
+			// build thumbnails
+			bigImgs.each(function(index) {
+        		$("ul","div.slider-thumbnails")
+        			.append(" <li><img alt='two' data-number='" + index + "' src='" + $(this).attr("src") + '?wid=150' + "'/></li>");
+			});
 
-		tbImgs.on('click', function() {
-			var altID = $(this).data('number');
-				
-				$('.arrow').remove();
-				$('li.chosen').removeClass('chosen');
-				$(this).parent('li').addClass('chosen').prepend('<em class="arrow"></em>');
+			thumbnails = $('.slider-thumbnails');
+			tbImgs = thumbnails.find('img');
 
-				slider.thbCurrent( altID );
-				slider.tranny();
-		})
+			tbImgs.on('click', function() {
+				var altID = $(this).data('number');
+					
+					$('.arrow').remove();
+					$('li.chosen').removeClass('chosen');
+					$(this).parent('li').addClass('chosen').prepend('<em class="arrow"></em>');
+
+					slider.thbCurrent( altID );
+					slider.tranny();
+			});
 	})();
 </script>
 </body>
