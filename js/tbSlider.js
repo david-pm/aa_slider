@@ -1,3 +1,4 @@
+
     function Slider( container, nav ) {
     	this.container = container;
     	this.imgs = this.container.find('img');
