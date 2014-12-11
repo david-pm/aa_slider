@@ -62,34 +62,5 @@
 </div>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
  <script src="js/tbSlider.js"></script>
-<script> 
-	/* initialize thumbnails and slider*/
-	(function() {
-		var container = $('.slider-container'),
-			bigImgs = container.find('li img'),
-			thumbnails, tbImgs,
-			slider = new Slider( container );
-
-			// build thumbnails
-			bigImgs.each(function(index) {
-        		$("ul","div.slider-thumbnails")
-        			.append(" <li><img alt='two' data-number='" + index + "' src='" + $(this).attr("src") + '?wid=150' + "'/></li>");
-			});
-
-			thumbnails = $('.slider-thumbnails');
-			tbImgs = thumbnails.find('img');
-
-			tbImgs.on('click', function() {
-				var altID = $(this).data('number');
-					
-					$('.arrow').remove();
-					$('li.chosen').removeClass('chosen');
-					$(this).parent('li').addClass('chosen').prepend('<em class="arrow"></em>');
-
-					slider.thbCurrent( altID );
-					slider.tranny();
-			});
-	})();
-</script>
 </body>
 </html>
