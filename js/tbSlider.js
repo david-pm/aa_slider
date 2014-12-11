@@ -1,8 +1,5 @@
-$(document).ready(function() {
-
     function Slider( container, nav ) {
     	this.container = container;
-    	//this.nav = nav.show();
     	this.imgs = this.container.find('img');
     	this.imgWidth = this.imgs[0].width;
     	this.imgsLen = this.imgs.length;
@@ -13,7 +10,7 @@ $(document).ready(function() {
     	this.container.animate({
     		'margin-left' : -( this.current * this.imgWidth )
     	});
-    };
+    }
 
     Slider.prototype.setCurrent = function( dir ) {
     	this.current += ( ~~( dir === 'next' ) || -1 );
@@ -93,14 +90,13 @@ $(document).ready(function() {
             }
         ); 
      
-    }); // doc ready   
+    }); // doc ready  
 
     //a simple function to click next link
     //a timer will call this function, and the rotation will begin :)  
     function rotate() {
         $('.small-nav').find('button[data-dir="next"]').click();
     }
-
 
 
         // initialize loading of thumbnails 
@@ -130,4 +126,3 @@ $(document).ready(function() {
                     slider.tranny();
             });
 
-}); // doc ready
