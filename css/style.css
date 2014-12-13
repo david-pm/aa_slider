@@ -3,7 +3,8 @@ font:400 62.5%/1 Helvetica,Arial,sans-serif;
 margin:0; 
 padding:0; 
 box-sizing:border-box; 
-background:#eee;}
+background:#eee;
+transition:background .5s ease;}
 /* featured slider */
 .main-slider{
 margin:auto; 

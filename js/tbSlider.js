@@ -1,16 +1,32 @@
-
-    function Slider( container, nav ) {
+    function Slider( container, nav, sSpeed, rSpeed ) { // Constructor Slider
     	this.container = container;
     	this.imgs = this.container.find('img');
     	this.imgWidth = this.imgs[0].width;
     	this.imgsLen = this.imgs.length;
+        this.nav = nav;
+        this.buildTbs(); // build small slider of thumbnail imgs
     	this.current = 0;
+        this.events.click.call(this);
+        this.events.hover.call(this);
+        this.sSpeed = sSpeed;
+        this.rSpeed = rSpeed;
+        this.run.setter(this.sSpeed);
     }
 
-    Slider.prototype.tranny = function( ) {
+    Slider.prototype.trannyBig = function(speed) {
     	this.container.animate({
     		'margin-left' : -( this.current * this.imgWidth )
-    	});
+    	}, speed, function() {
+            var randomNum = Math.random().toString(),
+                hexCode = randomNum.slice(2,8);
+                $('body').css('background', ( '#' + hexCode) );
+        });
+    }
+
+    Slider.prototype.trannySm = function( ) {
+        tbContainer.animate({
+            'margin-left' : -( this.current * tbImgWidth )
+        });
     }
 
     Slider.prototype.setCurrent = function( dir ) {
@@ -20,101 +36,67 @@
     }
 
     Slider.prototype.thbCurrent = function( altID ) {
-    	this.current = altID;
+    	if ( altID != 'undefined') {
+            this.current = altID;
+        } else {
+            console.log("this is where to reset current for small slider");
+        }
     }
 
-
-    // carousel
-    $(document).ready(function() {
-       
-        //rotation speed and timer
-        var speed = 6000;
-        var run = setInterval('rotate()', speed);    
-        
-        //grab the width and calculate left value
-        var item_width = $('.slider-thumbnails li').outerWidth(); 
-        var left_value = item_width * (-1); 
-
-        var smallNav = $('.small-nav').show();
-            
+    Slider.prototype.buildTbs = function() {
+        this.imgs.each(function(index) {
+            $("ul","div.slider-thumbnails")
+                .append(" <li><img alt='two' data-number='" + index + "' src='" + $(this).attr("src") + '?wid=150' + "'/></li>");
+        });
         //move the last item before first item, just in case user click prev button
         $('.slider-thumbnails li:first').before($('.slider-thumbnails li:last'));
-        
         //set the default item to the correct position 
-        $('.slider-thumbnails ul').css({'left' : left_value});
-        //if user clicked on prev button
-        smallNav.find('button[data-dir="prev"]').click(function() {
-            //get the right position            
-            var left_indent = parseInt($('.slider-thumbnails ul').css('left')) + item_width;
-            //slide the item            
-            $('.slider-thumbnails ul').animate({'left' : left_indent}, 500,function(){    
-                //move the last item and put it as first item                
-                $('.slider-thumbnails li:first').before($('.slider-thumbnails li:last'));           
-                //set the default item to correct position
-                $('.slider-thumbnails ul').css({'left' : left_value});
-            
-            });
-            //cancel the link behavior            
-            return false;
-                
-        });
-        //if user clicked on next button
-        smallNav.find('button[data-dir="next"]').click(function() {
-            
-            //get the right position
-            var left_indent = parseInt($('.slider-thumbnails ul').css('left')) - item_width;
-            
-            //slide the item
-            $('.slider-thumbnails ul').animate({'left' : left_indent}, 500, function () {
-                
-                //move the first item and put it as last item
-                $('.slider-thumbnails li:last').after($('.slider-thumbnails li:first'));                     
-                
-                //set the default item to correct position
-                $('.slider-thumbnails ul').css({'left' : left_value});
-            
-            });
-                     
-            //cancel the link behavior
-            return false;
-            
-        });        
-        
-        //if mouse hover, pause the auto rotation, otherwise rotate it
-        $('.slider-thumbnails').hover(
-            
-            function() {
-                clearInterval(run);
-            }, 
-            function() {
-                run = setInterval('rotate()', speed);    
-            }
-        ); 
-     
-    }); // doc ready  
-
-    //a simple function to click next link
-    //a timer will call this function, and the rotation will begin :)  
-    function rotate() {
-        $('.small-nav').find('button[data-dir="next"]').click();
+        $('.slider-thumbnails ul').css({'left' : -( $('.slider-thumbnails li').outerWidth() ) });
     }
+    
+    Slider.prototype.run = {
+        rotator : function () {
+            // find a way to call this.nav from here??
+            $('.small-nav').find('button[data-dir="next"]').click();
+        },
+        setter : function(speed) { 
+            // this == run{} SETTER
+            var self = this;
+            // _clearID global variable for clearInterval param
+            _clearID = setInterval(function () {
+                self.rotator();
+            }, speed);
+        }
+    } // run{}
 
+    Slider.prototype.events = {
 
-        // initialize loading of thumbnails 
-        // and listen for clicks on small slider
-        var container = $('.slider-container'),
-            bigImgs = container.find('li img'),
-            thumbnails, tbImgs,
-            slider = new Slider( container );
+        click : function() {
+            var self = this, // this == Slider{}
+                tb_container = $('.slider-thumbnails'),
+                tbImgs = tb_container.find('img');
 
-            // build thumbnails
-            bigImgs.each(function(index) {
-                $("ul","div.slider-thumbnails")
-                    .append(" <li><img alt='two' data-number='" + index + "' src='" + $(this).attr("src") + '?wid=150' + "'/></li>");
+            self.nav.find('button').on('click', function() {
+                var whichDir = $(this).data('dir'),
+                    item_width = tb_container.find('li').outerWidth(), 
+                    left_value = item_width * (-1); 
+
+                if ( whichDir == 'prev' ) {
+                    var left_indent = parseInt($('.slider-thumbnails ul').css('left')) + item_width;
+                        tb_container.find('ul').animate({'left' : left_indent}, self.rSpeed, function(){    
+                            tb_container.find('li:first').before(tb_container.find('li:last'));           
+                            tb_container.find('ul').css({'left' : left_value});
+                        });
+                        return false; //cancel the link behavior
+                } else {
+                    var left_indent = parseInt(tb_container.find('ul').css('left')) - item_width;
+                        tb_container.find('ul').animate({'left' : left_indent}, self.rSpeed, function () {
+                            tb_container.find('li:last').after(tb_container.find('li:first'));                     
+                            tb_container.find('ul').css({'left' : left_value});
+                    });
+                    return false; // cancel link behavior
+                }
             });
-
-            thumbnails = $('.slider-thumbnails');
-            tbImgs = thumbnails.find('img');
 
             tbImgs.on('click', function() {
                 var altID = $(this).data('number');
@@ -124,6 +106,20 @@
                     $(this).parent('li').addClass('chosen').prepend('<em class="arrow"></em>');
 
                     slider.thbCurrent( altID );
-                    slider.tranny();
+                    slider.trannyBig(self.rSpeed);
             });
+        }, 
 
+        hover : function() {
+            var self = this; // this == events{}
+
+            $(".slider-thumbnails").on({
+                mouseenter : function() {
+                    clearInterval(_clearID);
+                },
+                mouseleave : function() {
+                    self.run.setter(self.sSpeed);   
+                }
+            });
+        } 
+    }; // END events{}

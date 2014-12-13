@@ -14,6 +14,7 @@ $(document).ready(function() {
     
     //set the default item to the correct position 
     $('.thumbnails ul').css({'left' : left_value});
+    
     //if user clicked on prev button
     smallNav.find('button[data-dir="prev"]').click(function() {
         //get the right position            

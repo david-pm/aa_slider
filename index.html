@@ -52,16 +52,25 @@
 </div>
 
 <div class="slider-thumbnails">
-	<ul> <!-- thumbnails dynamically created -->
-		
-	</ul>
+	<ul><!-- thumbnails dynamically created --></ul>
 	<nav class="small-nav">
 		<button data-dir="prev"> &lt; </button>
 		<button data-dir="next"> &gt; </button>
 	</nav>
 </div>
-<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
- <script src="js/tbSlider.min.js"></script>
+<script src="js/tbSlider.min.js"></script>
+<script type="text/javascript">
+// initialize loading of thumbnails and listen for clicks on small slider
+    var container = $('.slider-container'),
+        smNav = $('.small-nav').show(),
+        carousel_speed = 5000, // miliseconds
+        animation_speed = 500, // miliseconds
+        slider = new Slider( container, smNav, carousel_speed, animation_speed ),
+        st = $('.slider-thumbnails'),
+        tbContainer = $('.slider-thumbnails').find('ul'),
+        tbImgWidth = tbContainer.find('li').outerWidth();
+</script>
 </body>
 </html>
