@@ -16,11 +16,7 @@
     Slider.prototype.trannyBig = function(speed) {
     	this.container.animate({
     		'margin-left' : -( this.current * this.imgWidth )
-    	}, speed, function() {
-            var randomNum = Math.random().toString(),
-                hexCode = randomNum.slice(2,8);
-                $('body').css('background', ( '#' + hexCode) );
-        });
+    	}, speed);
     }
 
     Slider.prototype.trannySm = function( ) {
@@ -38,8 +34,6 @@
     Slider.prototype.thbCurrent = function( altID ) {
     	if ( altID != 'undefined') {
             this.current = altID;
-        } else {
-            console.log("this is where to reset current for small slider");
         }
     }
 
