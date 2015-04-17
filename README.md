@@ -2,3 +2,5 @@
 ____
 
 A slider I made for [American Apparel's wholesale site](http://www.americanapparel.net/wholesaleresources/)
+
+another [demo](http://wslider.apphb.com/)
